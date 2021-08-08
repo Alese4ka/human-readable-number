@@ -1,5 +1,6 @@
 module.exports = function toReadable (number) {
-    let str = { 
+    let stringArray = { 
+        0:'zero',
         1:'one', 
         2:'two', 
         3:'three', 
@@ -29,15 +30,14 @@ module.exports = function toReadable (number) {
         90:'ninety',
         100:'hundred'
     };
-    let newS = '';
+    let newString = '';
     let i = 0;
-    let numS = number.toString();
-    while (i < numS.length) {
-        if (str[i] === number.slice(i)) {
-            newS = `${newS}${str.i}`;
-            return newS;
+    let numberArray = number.toString(10).split('').map(int => parseInt(int, 10));
+    while (i <= 3) {
+        if (stringArray[i] === numberArray[i]) {
+            newString = `${newString} ${stringArray.i}`;
         }
         i +=1;
     }
-    return newS;
+    return newString;
 }
