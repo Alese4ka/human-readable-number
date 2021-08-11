@@ -1,43 +1,27 @@
+const arrFromNull = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const arrFromTwenty = ['', '', 'twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 module.exports = function toReadable (number) {
-    let stringArray = { 
-        0:'zero',
-        1:'one', 
-        2:'two', 
-        3:'three', 
-        4:'four', 
-        5:'five', 
-        6:'six',
-        7:'seven',
-        8:'eight',
-        9:'nine',
-        10:'ten',
-        11:'eleven',
-        12:'twelve',
-        13:'thirteen',
-        14:'fourteen',
-        15:'fifteen',
-        16:'sixteen',
-        17:'seventeen',
-        18:'eighteen',
-        19:'nineteen',
-        20:'twenty',
-        30:'thirty',
-        40:'forty',
-        50:'fifty',
-        60:'sixty',
-        70:'seventy',
-        80:'eighty',
-        90:'ninety',
-        100:'hundred'
-    };
-    let newString = '';
-    let i = 0;
-    let numberArray = number.toString(10).split('').map(int => parseInt(int, 10));
-    while (i <= 3) {
-        if (stringArray[i] === numberArray[i]) {
-            newString = `${newString} ${stringArray.i}`;
-        }
-        i +=1;
+  if (number < 20){
+    const word = arrFromNull[number];
+    return word;
+  }
+  else if (number >= 20 && number < 100) {
+    let digits = [];
+    while (number) {
+        digits.push(number % 10);
+        number = Math.floor(number/10);
     }
-    return newString;
+    const word = `${arrFromTwenty[digits[1]]} ${arrFromNull[digits[0]]}`;
+    return word;
+  }
+  else if (number >= 100) {
+    let digits = [];
+    while (number) {
+        digits.push(number % 10);
+        number = Math.floor(number/10);
+    }
+    const word = `${arrFromNull[digits[2]]} hundred ${arrFromTwenty[digits[1]]} ${arrFromNull[digits[0]]}`;
+    return word;
+  }
 }
+
